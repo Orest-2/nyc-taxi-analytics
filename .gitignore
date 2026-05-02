@@ -1,0 +1,30 @@
+# Data files (large — don't commit raw data)
+data/
+results/
+
+# DuckDB database file
+*.duckdb
+*.duckdb.wal
+
+# Python / uv
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+dist/
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Go build output
+bin/
+
+# dbt
+dbt_packages/
+target/
+dbt_modules/
+logs/

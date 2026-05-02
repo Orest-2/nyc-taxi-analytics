@@ -42,6 +42,8 @@ cleaned as (
         tpep_dropoff_datetime > tpep_pickup_datetime
         -- drop negative fares (refunds, data errors)
         and fare_amount >= 0
+        -- drop negative total_amount values
+        and total_amount >= 0
         -- drop trips with impossible distances
         and trip_distance >= 0
         -- drop zero-duration trips with non-zero fare (meter errors)

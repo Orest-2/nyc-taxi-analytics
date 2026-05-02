@@ -13,7 +13,9 @@ select
         'pickup_at',
         'dropoff_at',
         'vendor_id',
-        'pickup_zone_id'
+        'pickup_zone_id',
+        'trip_distance',
+        'total_amount'
     ]) }}                                       as trip_sk,
 
     -- foreign keys
@@ -51,7 +53,7 @@ select
     t.total_amount,
 
     -- derived financial metrics
-    t.total_amount - t.fare_amount              as total_surcharges,
+    greatest(t.total_amount - t.fare_amount, 0)  as total_surcharges,
     case
         when t.trip_distance > 0
         then round(t.fare_amount / t.trip_distance, 2)

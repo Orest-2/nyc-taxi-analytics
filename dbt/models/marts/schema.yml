@@ -1,0 +1,10 @@
+models:
+  - name: mart_daily_summary
+    description: "Daily aggregated mart for dashboards"
+    columns:
+      - name: pickup_date
+        description: "Date of pickup (grain of the mart)"
+        tests: [not_null]
+      - name: total_trips
+        description: "Total trips for the day"
+        tests: [not_null]

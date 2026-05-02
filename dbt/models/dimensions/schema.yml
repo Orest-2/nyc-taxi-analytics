@@ -25,6 +25,7 @@ models:
                   Queens,
                   Staten Island,
                   Unknown,
+                  N/A,
                 ]
       - name: zone_name
         tests: [not_null]

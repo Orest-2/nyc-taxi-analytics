@@ -9,6 +9,12 @@ models:
     columns:
       - name: payment_type_id
         tests: [unique, not_null]
+  - name: dim_rate_code
+    columns:
+      - name: rate_code_id
+        tests: [unique, not_null]
+      - name: rate_description
+        tests: [not_null]
   - name: dim_zone
     columns:
       - name: zone_id

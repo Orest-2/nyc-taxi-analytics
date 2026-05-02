@@ -1,0 +1,36 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: main
+    description: Raw parquet data loaded directly into DuckDB by load_data.py
+    tables:
+      - name: trips
+        description: TLC Yellow Taxi trip records, Jan 2024
+        columns:
+          - name: VendorID
+            description: "1 = Creative Mobile Technologies, 2 = VeriFone Inc."
+            tests: [not_null, accepted_values: { values: [1, 2] }]
+          - name: tpep_pickup_datetime
+            tests: [not_null]
+          - name: tpep_dropoff_datetime
+            tests: [not_null]
+          - name: PULocationID
+            tests: [not_null]
+          - name: DOLocationID
+            tests: [not_null]
+          - name: fare_amount
+            tests: [not_null]
+          - name: total_amount
+            tests: [not_null]
+          - name: payment_type
+            tests:
+              - accepted_values:
+                  values: [1, 2, 3, 4]
+                  # 1=Credit Card, 2=Cash, 3=No Charge, 4=Dispute
+          - name: RatecodeID
+            tests:
+              - accepted_values:
+                  values: [1, 2, 3, 4, 5, 6]
+                  # 1=Standard, 2=JFK, 3=Newark, 4=Nassau/Westchester,
+                  # 5=Negotiated, 6=Group ride

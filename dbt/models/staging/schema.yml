@@ -1,0 +1,20 @@
+models:
+  - name: stg_trips
+    columns:
+      - name: pickup_at
+        tests: [not_null]
+      - name: dropoff_at
+        tests: [not_null]
+      - name: trip_duration_sec
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: fare_amount
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: total_amount
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"

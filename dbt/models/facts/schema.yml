@@ -1,0 +1,38 @@
+models:
+  - name: fact_trips
+    columns:
+      - name: trip_sk
+        tests: [unique, not_null]
+      - name: vendor_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_vendor')
+              field: vendor_id
+      - name: pickup_zone_id
+        tests:
+          - relationships:
+              to: ref('dim_zone')
+              field: zone_id
+      - name: dropoff_zone_id
+        tests:
+          - relationships:
+              to: ref('dim_zone')
+              field: zone_id
+      - name: payment_type_id
+        tests:
+          - relationships:
+              to: ref('dim_payment_type')
+              field: payment_type_id
+      - name: fare_amount
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: trip_duration_sec
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: total_surcharges
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"

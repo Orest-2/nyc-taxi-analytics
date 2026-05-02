@@ -1,0 +1,30 @@
+models:
+  - name: dim_vendor
+    columns:
+      - name: vendor_id
+        tests: [unique, not_null]
+      - name: vendor_name
+        tests: [not_null]
+  - name: dim_payment_type
+    columns:
+      - name: payment_type_id
+        tests: [unique, not_null]
+  - name: dim_zone
+    columns:
+      - name: zone_id
+        tests: [unique, not_null]
+      - name: borough
+        tests:
+          - accepted_values:
+              values:
+                [
+                  Bronx,
+                  Brooklyn,
+                  EWR,
+                  Manhattan,
+                  Queens,
+                  Staten Island,
+                  Unknown,
+                ]
+      - name: zone_name
+        tests: [not_null]
